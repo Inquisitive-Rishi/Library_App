@@ -1,5 +1,6 @@
 const addBtn = document.querySelector('.add-book');
 const submitBtn = document.querySelector('.submit-book');
+const showBtn = document.querySelector('.show-books')
 
 const myLibrary = [];
 
@@ -24,6 +25,10 @@ addBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', ()=> {
     addToLibrary();
     console.log(myLibrary);
+});
+
+showBtn.addEventListener('click', () => {
+    console.table(myLibrary);
 });
 
 function addToLibrary() {
