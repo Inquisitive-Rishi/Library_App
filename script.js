@@ -1,7 +1,5 @@
 const cardContainer = document.querySelector('.container');
 const addBtn = document.querySelector('.add-book');
-const submitBtn = document.querySelector('.submit-book');
-const showBtn = document.querySelector('.show-books');
 
 const myLibrary = [];
 
@@ -10,6 +8,7 @@ function Book(title='none',author='none',pages=0) {
     this.author = author
     this.pages = pages
 }
+
 
 let title;
 let author;
@@ -21,16 +20,13 @@ addBtn.addEventListener('click', () => {
     author = prompt("Author?") 
     pages = parseInt(prompt('No of pages?'));
     book = new Book(title,author,pages);
+    addToLibrary();
+    showCard();
+    console.log(myLibrary);
 })
 
-submitBtn.addEventListener('click', ()=> {
-    addToLibrary();
-    console.log(myLibrary);
-});
 
-
-showBtn.addEventListener('click', () => {
-    for (let i = 0; i < myLibrary.length; i++) {
+function showCard() {
         const card = document.createElement('div');
         const h41 = document.createElement('h4');
         const author = document.createElement('p');
@@ -38,16 +34,15 @@ showBtn.addEventListener('click', () => {
     
         card.classList.add('card');
         h41.classList.add('title');
-        h41.textContent = `${myLibrary[i].title}`;
-        author.textContent = `Author: ${myLibrary[i].author}`;
-        pages.textContent = `Pages: ${myLibrary[i].pages}`;
+        h41.textContent = `${myLibrary[myLibrary.length - 1].title}`;
+        author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
+        pages.textContent = `Pages: ${myLibrary[myLibrary.length - 1].pages}`;
     
         card.appendChild(h41)
         card.appendChild(author)
         card.appendChild(pages)
         cardContainer.appendChild(card);
-    }
-});
+}; 
 
 
 function addToLibrary() {
