@@ -8,6 +8,28 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <dialog id="my-dialog">
+        <form>
+                <div class="form-container">
+                <div>
+                <label for="title">title</label>
+                <input type="text" id="title" required>
+                </div>
+                <div>
+                <label for="author">author</label>
+                <input type="text" id="author" required>
+                </div>
+                <div>
+                <label for="pages">pages</label>
+                <input type="text" id="pages">
+                </div>
+                <div>
+                    <button class="add-card">add</button>
+                </div>
+            </div>
+                <button class="close-btn" formmethod="dialog">X</button>
+            </form>
+    </dialog>
     <button class="add-book">Add book</button>
     <div class="container"></div>
 </body>
