@@ -9,24 +9,24 @@
 </head>
 <body>
     <dialog id="my-dialog">
-        <form>
+            <form>
                 <div class="form-container">
                 <div>
                 <label for="title">title</label>
-                <input type="text" id="title" required>
+                <input type="text" id="title" maxlength="44">
                 </div>
                 <div>
                 <label for="author">author</label>
-                <input type="text" id="author" required>
+                <input type="text" id="author" maxlength="34">
                 </div>
                 <div>
                 <label for="pages">pages</label>
-                <input type="text" id="pages">
+                <input type="number" max="1000" id="pages">
                 </div>
                 <div>
                     <button class="add-card">add</button>
                 </div>
-            </div>
+                </div>
                 <button class="close-btn" formmethod="dialog">X</button>
             </form>
     </dialog>
@@ -34,3 +34,27 @@
     <div class="container"></div>
 </body>
 </html>
+
+
+
+<!-- <div class="container">
+    <div class="card" data-key="0">
+        <h4 class="title">title1</h4>
+        <p>written by: auth1</p>
+        <p>Pages: 321</p>
+        <button class="remove-btn">remove</button>
+    </div>
+    <div class="card" data-key="1">
+        <h4 class="title">title1</h4>
+        <p>written by: auth1</p>
+        <p>Pages: 321</p>
+        <button class="remove-btn">remove</button>
+    </div>
+    <div class="card" data-key="2">
+        <h4 class="title">title1</h4>
+        <p>written by: auth1</p>
+        <p>Pages: 321</p>
+        <button class="remove-btn">remove</button>
+    </div>
+</div> -->
+

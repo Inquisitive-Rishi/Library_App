@@ -1,13 +1,13 @@
 const cardContainer = document.querySelector('.container');
 const showModalBtn = document.querySelector('.add-book');
 const modal = document.querySelector('#my-dialog');
-const closeBtn = document.querySelector('.close-btn');
 const addCardBtn = document.querySelector('.add-card');
+// const cards = document.querySelectorAll('.card')
+// const removeCardBtn = document.querySelectorAll('.remove-btn');
 
 const titleIpt = document.querySelector('#title')
 const authorIpt = document.querySelector('#author')
 const pagesIpt = document.querySelector('#pages');
-
 
 const myLibrary = [];
 
@@ -16,7 +16,6 @@ function Book(title,author,pages) {
     this.author = author
     this.pages = pages
 }
-
 
 let title;
 let author;
@@ -37,33 +36,60 @@ addCardBtn.addEventListener('click', (e) => {
         return;
     }
     addToLibrary();
-    showCard();
+    addCard();
+    dataIdx++;
+
+    const cards = document.querySelectorAll('.card')
+    const removeCardBtn = document.querySelectorAll('.remove-btn');
+
+    let remIdx;
+    removeCardBtn.forEach(btn => {
+        btn.addEventListener('click', ()=> {
+            (dataIdx > 0) ? dataIdx-- : dataIdx = 0;
+            remIdx = btn.dataset.idx;
+            myLibrary.splice(remIdx,1);
+            cards[remIdx].remove();
+        })
+    })
+
+    console.log(cards)
+    console.log(removeCardBtn);
     console.log(myLibrary);
     modal.close();
 })
 
-function showCard() {
+let dataIdx = 0;
+function addCard() {
         const card = document.createElement('div');
         const h41 = document.createElement('h4');
         const author = document.createElement('p');
         const pages = document.createElement('p');
-
+        const removeBtn = document.createElement('button');
+        removeBtn.setAttribute('class','remove-btn');
+        
         card.classList.add('card');
+        card.setAttribute('data-idx',`${dataIdx}`);
         h41.classList.add('title');
+        removeBtn.setAttribute(`data-idx`, `${dataIdx}`);
+        removeBtn.classList.add(`remove-btn`);
         h41.textContent = `${myLibrary[myLibrary.length - 1].title}`;
-        author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
+        author.textContent = `written by: ${myLibrary[myLibrary.length - 1].author}`;
         pages.textContent = `Pages: ${myLibrary[myLibrary.length - 1].pages}`;
+        removeBtn.textContent = "remove";
     
         card.appendChild(h41)
         card.appendChild(author)
         card.appendChild(pages)
+        card.appendChild(removeBtn);
         cardContainer.appendChild(card);
-}; 
-
-closeBtn.addEventListener('click', () => {
-    modal.close()
-})
+    }; 
 
 function addToLibrary() {
     myLibrary.push(book);
+}
+
+function removeEl(array,el) {
+    const index = array.indexOf(el);
+    if (index !== -1) array.splice(index,1);
+    return array;
 }
