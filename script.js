@@ -31,6 +31,10 @@ closeModalBtn.addEventListener('click', ()=> {
     dialog.close();
 })
 
+function addToLibrary() {
+    myLibrary.push(book);
+}
+
 addCardBtn.addEventListener('click', (e) => {
     e.preventDefault()
     title = titleIpt.value;
@@ -39,14 +43,23 @@ addCardBtn.addEventListener('click', (e) => {
     book = new Book(title,author,pages);
     addToLibrary();
     addToCard();
-    dialog.close();
+
+    const cards = document.querySelectorAll('.card');
+    const removeCardBtn = document.querySelectorAll('.card .remove-btn');
+
+    removeCardBtn.forEach(btn => {
+        btn.addEventListener('click', ()=> {
+            alert(btn.dataset.idx);
+        });
+    });
+
+    console.log(cards)
+    console.log(removeCardBtn)
     console.log(myLibrary);
+    dialog.close();
 });
 
-function addToLibrary() {
-    myLibrary.push(book);
-}
-
+let dataIdx = 0;
 function addToCard() {
     const card = document.createElement('div');
     const cardTitle = document.createElement('h3');
@@ -59,12 +72,17 @@ function addToCard() {
     cardAuthor.textContent = `Written by: ${authorIpt.value}`;
     removeBtn.textContent = 'remove';
 
+    removeBtn.setAttribute('class','remove-btn')
+    removeBtn.setAttribute('data-idx',`${dataIdx}`);
+    card.setAttribute('data-idx',`${dataIdx}`);
     card.setAttribute('class','card');
+
     card.appendChild(cardTitle)
     card.appendChild(cardAuthor)
     card.appendChild(cardPages)
     card.appendChild(removeBtn)
     cardContainer.appendChild(card);
+    dataIdx++;
 }
 
 
