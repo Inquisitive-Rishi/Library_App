@@ -44,18 +44,17 @@ addCardBtn.addEventListener('click', (e) => {
     addToLibrary();
     addToCard();
 
-    const cards = document.querySelectorAll('.card');
-    const removeCardBtn = document.querySelectorAll('.card .remove-btn');
+    cardContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-btn')) {
+            const idx = e.target.getAttribute('data-idx');
 
-    removeCardBtn.forEach(btn => {
-        btn.addEventListener('click', ()=> {
-            alert(btn.dataset.idx);
-        });
-    });
+            const cardToRemove = document.querySelector(`.card[data-idx='${idx}']`);
+            cardToRemove.remove();
 
-    console.log(cards)
-    console.log(removeCardBtn)
-    console.log(myLibrary);
+            myLibrary.splice(idx,1);
+
+        }
+    })
     dialog.close();
 });
 
