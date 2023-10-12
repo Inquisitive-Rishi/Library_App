@@ -8,7 +8,7 @@ const showModalBtn = document.querySelector('.modal-btn');
 const closeModalBtn = document.querySelector('.close-btn');
 const dialog = document.querySelector('#dialog');
 const addCardBtn = document.querySelector('.add-card');
-const readBtn = document.querySelector('#read');
+const readChkBox = document.querySelector('#read');
 
 
 const titleIpt = document.querySelector('#title')
@@ -45,7 +45,7 @@ addCardBtn.addEventListener('click', (e) => {
 
     addToLibrary();
     addToCard();
-    console.log(myLibrary);
+  
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
@@ -67,6 +67,7 @@ function addToCard() {
     const cardTitle = document.createElement('h3');
     const cardAuthor = document.createElement('p');
     const cardPages = document.createElement('p');
+    const chkBtn = document.createElement('button');
     const removeBtn = document.createElement('button');
 
     cardTitle.textContent = titleIpt.value;
@@ -82,7 +83,16 @@ function addToCard() {
     card.appendChild(cardTitle)
     card.appendChild(cardAuthor)
     card.appendChild(cardPages)
+    card.appendChild(chkBtn);
     card.appendChild(removeBtn)
     cardContainer.appendChild(card);
     dataIdx++;
+
+    if (readChkBox.checked) {
+        chkBtn.textContent = 'Read the book'
+        chkBtn.style.backgroundColor = '#53f285';
+    } else {
+        chkBtn.textContent = 'Not read';
+        chkBtn.style.backgroundColor = '#fa3e3e';
+    }
 }
