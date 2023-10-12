@@ -8,6 +8,7 @@ const showModalBtn = document.querySelector('.modal-btn');
 const closeModalBtn = document.querySelector('.close-btn');
 const dialog = document.querySelector('#dialog');
 const addCardBtn = document.querySelector('.add-card');
+const readBtn = document.querySelector('#read');
 
 
 const titleIpt = document.querySelector('#title')
@@ -41,6 +42,7 @@ addCardBtn.addEventListener('click', (e) => {
     author = authorIpt.value;
     pages = pagesIpt.value;
     book = new Book(title,author,pages);
+
     addToLibrary();
     addToCard();
     console.log(myLibrary);
@@ -75,6 +77,7 @@ function addToCard() {
     removeBtn.setAttribute('class','remove-btn')
     card.setAttribute('data-idx',`${dataIdx}`);
     card.setAttribute('class','card');
+    card.style.gap = '30px';
 
     card.appendChild(cardTitle)
     card.appendChild(cardAuthor)
@@ -83,5 +86,3 @@ function addToCard() {
     cardContainer.appendChild(card);
     dataIdx++;
 }
-
-

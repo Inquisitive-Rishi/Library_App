@@ -10,18 +10,23 @@
 <body>
     <dialog id="dialog">
             <form>
+            
                 <div class="form-container">
                 <div>
                 <label for="title">title</label>
-                <input type="text" id="title" maxlength="44">
+                <input type="text" id="title" name="title" maxlength="44" required>
                 </div>
                 <div>
                 <label for="author">author</label>
-                <input type="text" id="author" maxlength="34">
+                <input type="text" id="author" name="author" maxlength="34" required>
                 </div>
                 <div>
                 <label for="pages">pages</label>
-                <input type="number" max="1000" id="pages">
+                <input type="number" max="1000" name="pages" id="pages" required>
+                </div>
+                <div>
+                    <label for="read">have you read it: </label>
+                    <input type="checkbox" id="read">
                 </div>
                 <div>
                     <button class="add-card">add</button>

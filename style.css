@@ -39,6 +39,7 @@ header h3 {
 }
 
 .main {
+    padding: 20px;
     flex: 1;
 }
 
@@ -62,6 +63,21 @@ form {
     margin-bottom: 25px;
 }
 
+
+#dialog {
+    margin: auto;
+}
+ /* #dialog {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    padding: 20px;
+} */
+
+#dialog .close-btn {
+    height: 30px;
+}
 
 .card {
     display: flex;
