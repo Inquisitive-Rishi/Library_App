@@ -43,18 +43,19 @@ addCardBtn.addEventListener('click', (e) => {
     book = new Book(title,author,pages);
     addToLibrary();
     addToCard();
+    console.log(myLibrary);
+    const cards = document.querySelectorAll('.card');
 
-    cardContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-btn')) {
-            const idx = e.target.getAttribute('data-idx');
-
-            const cardToRemove = document.querySelector(`.card[data-idx='${idx}']`);
-            cardToRemove.remove();
-
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            let idx = card.dataset.idx;
             myLibrary.splice(idx,1);
-
-        }
+            if (e.target.textContent === 'remove') {
+            card.remove();
+            }
+        })
     })
+
     dialog.close();
 });
 
@@ -72,7 +73,6 @@ function addToCard() {
     removeBtn.textContent = 'remove';
 
     removeBtn.setAttribute('class','remove-btn')
-    removeBtn.setAttribute('data-idx',`${dataIdx}`);
     card.setAttribute('data-idx',`${dataIdx}`);
     card.setAttribute('class','card');
 
