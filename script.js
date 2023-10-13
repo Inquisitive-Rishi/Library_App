@@ -63,8 +63,9 @@ addCardBtn.addEventListener('click', (e) => {
             }
         })
     })
-
 });
+
+
 
 let dataIdx = 0;
 function addToCard() {
@@ -94,12 +95,16 @@ function addToCard() {
     cardContainer.appendChild(card);
     dataIdx++;          
 
-    if (readChkBox.checked) {
-        chkBtn.textContent = read;
-        chkBtn.style.backgroundColor = btnChkcolor;
-    } else {
-        chkBtn.textContent = unRead;
-        chkBtn.style.backgroundColor = btnNotCheckedColor;
-        chkBtn.style.color = 'white';
-    }
+    (readChkBox.checked) ? uncheck(chkBtn) : check(chkBtn);
+}
+
+function uncheck(btn) {
+    btn.textContent = read;
+    btn.style.backgroundColor = btnChkcolor;
+}
+
+function check(btn) {
+    btn.textContent = unRead;
+    btn.style.backgroundColor = btnNotCheckedColor;
+    btn.style.color = 'white';
 }
