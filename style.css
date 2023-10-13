@@ -18,7 +18,12 @@ body {
 }
 
 header, .footer {
-    height: 50px;
+    height: 70px;
+}
+
+header img {
+    height: 2.5em;
+    margin-right: 5px;
 }
 
 header {
@@ -30,16 +35,24 @@ header {
     padding-right: 10px;
 }
 
-header h3 {
+header h2 {
+    font-size: 35px;
     margin-right: auto;
 }
 
 .modal-btn {
+    color: white;
+    font-size: 1.4em;
     display:block;
-    height: 30px;
+    height: 45px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 1px solid black;    
+    background-color: coral;
+}
+
+.modal-btn:hover {
+    scale: 1.2;
+    font-weight: bold;
 }
 
 .main {
@@ -71,13 +84,7 @@ form {
 #dialog {
     margin: auto;
 }
- /* #dialog {
-    display: flex;
-    height: 400px;
-    width: 400px;
-    border-radius: 10px;
-    padding: 20px;
-} */
+
 
 #dialog .close-btn {
     height: 30px;

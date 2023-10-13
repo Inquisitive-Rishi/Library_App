@@ -81,6 +81,7 @@ function addToCard() {
     cardAuthor.textContent = `Written by: ${authorIpt.value}`;
     removeBtn.textContent = 'remove';
 
+    chkBtn.setAttribute('class','chk-btn');
     removeBtn.setAttribute('class','remove-btn')
     removeBtn.style.backgroundColor = 'white';
     card.setAttribute('data-idx',`${dataIdx}`);
@@ -95,15 +96,15 @@ function addToCard() {
     cardContainer.appendChild(card);
     dataIdx++;          
 
-    (readChkBox.checked) ? uncheck(chkBtn) : check(chkBtn);
+    (readChkBox.checked) ? checkState(chkBtn) : uncheckState(chkBtn);
 }
 
-function uncheck(btn) {
+function checkState(btn) {
     btn.textContent = read;
     btn.style.backgroundColor = btnChkcolor;
 }
 
-function check(btn) {
+function uncheckState(btn) {
     btn.textContent = unRead;
     btn.style.backgroundColor = btnNotCheckedColor;
     btn.style.color = 'white';
