@@ -2,6 +2,10 @@ let title;
 let author;
 let pages;
 let book;
+const btnChkcolor =  '#53f285';
+const btnNotCheckedColor = '#fa3e3e';
+const read = 'Read the book';
+const unRead = 'Not read';
 
 const cardContainer = document.querySelector('.container');
 const showModalBtn = document.querySelector('.modal-btn');
@@ -25,6 +29,7 @@ function Book(title,author,pages) {
 
 showModalBtn.addEventListener('click', ()=> {
     titleIpt.value = authorIpt.value = pagesIpt.value = '';
+    readChkBox.checked = false;
     dialog.showModal();
 })
 
@@ -42,10 +47,11 @@ addCardBtn.addEventListener('click', (e) => {
     author = authorIpt.value;
     pages = pagesIpt.value;
     book = new Book(title,author,pages);
-
+ 
     addToLibrary();
     addToCard();
-  
+    dialog.close();
+
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
@@ -58,7 +64,6 @@ addCardBtn.addEventListener('click', (e) => {
         })
     })
 
-    dialog.close();
 });
 
 let dataIdx = 0;
@@ -76,9 +81,10 @@ function addToCard() {
     removeBtn.textContent = 'remove';
 
     removeBtn.setAttribute('class','remove-btn')
+    removeBtn.style.backgroundColor = 'white';
     card.setAttribute('data-idx',`${dataIdx}`);
     card.setAttribute('class','card');
-    card.style.gap = '30px';
+    chkBtn.style.marginBottom = '5px'
 
     card.appendChild(cardTitle)
     card.appendChild(cardAuthor)
@@ -86,13 +92,14 @@ function addToCard() {
     card.appendChild(chkBtn);
     card.appendChild(removeBtn)
     cardContainer.appendChild(card);
-    dataIdx++;
+    dataIdx++;          
 
     if (readChkBox.checked) {
-        chkBtn.textContent = 'Read the book'
-        chkBtn.style.backgroundColor = '#53f285';
+        chkBtn.textContent = read;
+        chkBtn.style.backgroundColor = btnChkcolor;
     } else {
-        chkBtn.textContent = 'Not read';
-        chkBtn.style.backgroundColor = '#fa3e3e';
+        chkBtn.textContent = unRead;
+        chkBtn.style.backgroundColor = btnNotCheckedColor;
+        chkBtn.style.color = 'white';
     }
 }
