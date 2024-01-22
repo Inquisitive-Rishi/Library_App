@@ -112,9 +112,8 @@ input[type="checkbox"] {
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(218, 233, 238);
+    background-color: #dae9ee;
+    text-align: center;
     padding: 10px;
     font-size: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -131,9 +130,6 @@ input[type="checkbox"] {
     box-shadow: 3px 3px 4px rgba(0,0,0,0.5);
 }
 
-.card {
-    text-align: center;
-}   
 
 .footer {
     display: flex;
