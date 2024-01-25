@@ -113,6 +113,11 @@ input[type="checkbox"] {
 
 .card {
     background-color: #dae9ee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-wrap: wrap;
+    gap: 10px;
     text-align: center;
     padding: 10px;
     font-size: 10px;
@@ -136,4 +141,22 @@ input[type="checkbox"] {
     justify-content: center;
     align-items: center;
     background-color: #efe9ea;
+}
+
+.card-title, .card-author, .card-pages, .is-read, .is-not-read {
+    text-align: center;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.is-not-read {
+    background-color: #f53434;
+    color: white;
+}
+
+.is-read {
+    background-color: #4adc4a;
+    color: white;
 }

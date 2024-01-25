@@ -45,18 +45,32 @@ addBookBtn.addEventListener('click', (e) => {
     console.log(library);
 
     const card = document.createElement('div')
-    const title = document.createElement('p')
-    const author = document.createElement('p')
-    const pages = document.createElement('p')
-    const isChecked = document.createElement('p')
+    const cardTitle = document.createElement('p')
+    const cardAuthor = document.createElement('p')
+    const cardPages = document.createElement('p')
+    const isRead = document.createElement('button')
 
     card.setAttribute('class', 'card')
+    cardTitle.setAttribute('class', 'card-title')
+    cardAuthor.setAttribute('class', 'card-author')
+    cardPages.setAttribute('class', 'card-pages')
 
-    library.forEach(book => {
-        for (const [key, value] of Object.entries(book)) {
-            console.log(`${value}`);
-        }
-    })
+    if (book.checked === true) {
+        isRead.setAttribute('class', 'is-read') 
+    } else {
+        isRead.setAttribute('class', 'is-not-read')
+    }
+    // (book.checked === true) ? isRead.setAttribute('class', 'is-read') : isRead.setAttribute('class', 'is-not-read')
+
+
+    cardTitle.textContent = book.title
+    cardAuthor.textContent = 'written by ' + book.author
+    cardPages.textContent = book.pages + ' pages'
+    isRead.textContent = (book.checked === true) ? 'You\'ve read it' : 'You havent read it'
+
+    const cardContents = [cardTitle, cardAuthor, cardPages, isRead]
+    cardContents.forEach(content => card.appendChild(content))
+
 
     container.appendChild(card)
     modal.close()
