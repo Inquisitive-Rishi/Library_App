@@ -30,10 +30,18 @@ function pushBookToArray(x) {
     library.push(x)
 }
 
+function clearInput() {
+    inputName.value=""
+    inputTitle.value=""
+    inputPages.value=""
+    checkBox.checked=false
+}
+
 addBookBtn.addEventListener('click', (e) => {
     e.preventDefault()
     const book = new Book(inputTitle.value, inputName.value, inputPages.value, checkBox.checked)
     pushBookToArray(book)
+    clearInput()
     console.log(library);
 
     const card = document.createElement('div')
