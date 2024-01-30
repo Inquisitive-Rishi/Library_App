@@ -17,7 +17,14 @@ closeModalBtn.addEventListener('click', () => {
     modal.close()
 })
 
-const library = []
+const library = [
+    {title: 'The Mahabharata', author: 'Ved Vyasa', pages: 2923, checked: true},
+    {title: 'The Ramayana', author: 'Maharishi Walmiki', pages: 3212, checked: true},
+    {title: 'To Kill a Mockingbird', author: 'Harper Lee', pages: 343, checked: false},
+    {title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', pages: 344, checked: false},
+    {title: 'The Catcher in the Rye', author: 'J.D. Salinger', pages: 421, checked: true},
+    {title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', pages: 342, checked: false}
+]
 
 function Book(title,author,pages,checked) {
     this.title = title;
@@ -37,48 +44,54 @@ function clearInput() {
     checkBox.checked=false
 }
 
+console.log(library);
+
 addBookBtn.addEventListener('click', (e) => {
     e.preventDefault()
     const book = new Book(inputTitle.value, inputName.value, inputPages.value, checkBox.checked)
     pushBookToArray(book)
     clearInput()
     console.log(library);
-
-    const card = document.createElement('div')
-    const cardTitle = document.createElement('p')
-    const cardAuthor = document.createElement('p')
-    const cardPages = document.createElement('p')
-    const isRead = document.createElement('button')
-
-    card.setAttribute('class', 'card')
-    cardTitle.setAttribute('class', 'card-title')
-    cardAuthor.setAttribute('class', 'card-author')
-    cardPages.setAttribute('class', 'card-pages')
-
-    if (book.checked === true) {
-        isRead.setAttribute('class', 'is-read') 
-    } else {
-        isRead.setAttribute('class', 'is-not-read')
-    }
-    // (book.checked === true) ? isRead.setAttribute('class', 'is-read') : isRead.setAttribute('class', 'is-not-read')
-
-
-    cardTitle.textContent = book.title
-    cardAuthor.textContent = 'written by ' + book.author
-    cardPages.textContent = book.pages + ' pages'
-    isRead.textContent = (book.checked === true) ? 'You\'ve read it' : 'You havent read it'
-
-    const cardContents = [cardTitle, cardAuthor, cardPages, isRead]
-    cardContents.forEach(content => card.appendChild(content))
-
-
-    container.appendChild(card)
     modal.close()
 })
 
+function displayCards() {
+    library.forEach(card => {
+        const cardDiv = document.createElement('div')
+        const cardTitle = document.createElement('p')
+        const cardAuthor = document.createElement('p')
+        const cardPages = document.createElement('p')
+        const cardIsChecked = document.createElement('p')
 
+        cardDiv.setAttribute('class', 'card')
+        cardTitle.setAttribute('class', 'card-title')
+        cardAuthor.setAttribute('class', 'card-author')
+        cardPages.setAttribute('class', 'card-pages')
+        
+        cardTitle.textContent = card.title;
+        cardAuthor.textContent = card.author;
+        cardPages.textContent = card.pages;
+        
+        if (card.checked) {
+            cardIsChecked.textContent = "Book is read"
+            cardIsChecked.classList.add("is-read")
+        } else {
+            cardIsChecked.textContent = "Book is not read"
+            cardIsChecked.classList.add("is-not-read")
+        }
+        
 
+        const elements = [cardTitle, cardAuthor, cardPages, cardIsChecked]
+        // card.appendChild(cardTitle)
+        // card.appendChild(cardAuthor)
+        // card.appendChild(cardPages)
+        // card.appendChild(cardIsChecked)
+        elements.forEach(el => cardDiv.appendChild(el))
+        container.appendChild(cardDiv)
+    })
 
+}
+
+displayCards()
 
 footer.textContent = `Copyright © Rishi Raj ${new Date().getFullYear()}`
-
