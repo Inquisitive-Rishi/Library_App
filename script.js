@@ -44,18 +44,24 @@ function clearInput() {
     checkBox.checked=false
 }
 
-console.log(library);
-
 addBookBtn.addEventListener('click', (e) => {
     e.preventDefault()
+    clearCardContainer()
     const book = new Book(inputTitle.value, inputName.value, inputPages.value, checkBox.checked)
-    pushBookToArray(book)
     clearInput()
+    pushBookToArray(book)
     console.log(library);
+    displayCards()
     modal.close()
 })
 
-function displayCards() {
+function clearCardContainer() {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
+
+function displayCards() {   
     library.forEach(card => {
         const cardDiv = document.createElement('div')
         const cardTitle = document.createElement('p')
@@ -69,8 +75,8 @@ function displayCards() {
         cardPages.setAttribute('class', 'card-pages')
         
         cardTitle.textContent = card.title;
-        cardAuthor.textContent = card.author;
-        cardPages.textContent = card.pages;
+        cardAuthor.textContent = "written by: "+ card.author;
+        cardPages.textContent = "pages: "+ card.pages;
         
         if (card.checked) {
             cardIsChecked.textContent = "Book is read"
@@ -80,18 +86,12 @@ function displayCards() {
             cardIsChecked.classList.add("is-not-read")
         }
         
-
         const elements = [cardTitle, cardAuthor, cardPages, cardIsChecked]
-        // card.appendChild(cardTitle)
-        // card.appendChild(cardAuthor)
-        // card.appendChild(cardPages)
-        // card.appendChild(cardIsChecked)
         elements.forEach(el => cardDiv.appendChild(el))
         container.appendChild(cardDiv)
     })
-
 }
-
 displayCards()
+
 
 footer.textContent = `Copyright © Rishi Raj ${new Date().getFullYear()}`

@@ -147,6 +147,16 @@ input[type="checkbox"] {
     text-align: center;
 }
 
+.is-read, .is-not-read {
+    font-weight: 500;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.card-author {
+    line-height: 1.3rem;
+}
+
 .card-title {
     font-weight: bold;
 }
@@ -159,4 +169,10 @@ input[type="checkbox"] {
 .is-read {
     background-color: #4adc4a;
     color: white;
+}
+
+.delete-card {
+    background-color: red;
+    color: white;
+    padding: 3px;   
 }
