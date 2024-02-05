@@ -40,6 +40,10 @@ header h2 {
     margin-right: auto;
 }
 
+header .book-count {
+    margin-right: 50px;
+}
+
 .modal-btn {
     color: white;
     font-size: 1.4em;
@@ -171,8 +175,20 @@ input[type="checkbox"] {
     color: white;
 }
 
-.delete-card {
+.remove-book-btn {
     background-color: red;
     color: white;
+    font-style: italic;
     padding: 3px;   
+}
+
+.remove-book-btn:hover {
+    border: 3px solid red;
+    font-style: normal;
+    background-color: white;
+    color: red;
+}
+
+.remove-book-btn:hover::before {
+    content: "😲";
 }

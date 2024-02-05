@@ -3,6 +3,7 @@ const footer = document.querySelector('footer');
 const addBtn = document.querySelector('header button')
 const modal = document.querySelector('dialog')
 const inputTitle = document.querySelector('input[id="title"]')
+const bookCount = document.querySelector('.book-count')
 const inputName = document.querySelector('input[id="author"]')
 const inputPages = document.querySelector('input[id="pages"]')
 const checkBox = document.querySelector('input[type="checkbox"]')
@@ -22,8 +23,6 @@ const library = [
     {title: 'The Ramayana', author: 'Maharishi Walmiki', pages: 3212, checked: true},
     {title: 'To Kill a Mockingbird', author: 'Harper Lee', pages: 343, checked: false},
     {title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', pages: 344, checked: false},
-    {title: 'The Catcher in the Rye', author: 'J.D. Salinger', pages: 421, checked: true},
-    {title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', pages: 342, checked: false}
 ]
 
 function Book(title,author,pages,checked) {
@@ -62,21 +61,25 @@ function clearCardContainer() {
 }
 
 function displayCards() {   
+    bookCount.textContent = `Books Available: ${library.length}`
     library.forEach(card => {
         const cardDiv = document.createElement('div')
         const cardTitle = document.createElement('p')
         const cardAuthor = document.createElement('p')
         const cardPages = document.createElement('p')
         const cardIsChecked = document.createElement('p')
+        const removeBookBtn = document.createElement('button')
 
         cardDiv.setAttribute('class', 'card')
         cardTitle.setAttribute('class', 'card-title')
         cardAuthor.setAttribute('class', 'card-author')
         cardPages.setAttribute('class', 'card-pages')
+        removeBookBtn.setAttribute('class', 'remove-book-btn')
         
         cardTitle.textContent = card.title;
         cardAuthor.textContent = "written by: "+ card.author;
         cardPages.textContent = "pages: "+ card.pages;
+        removeBookBtn.textContent = 'delete'
         
         if (card.checked) {
             cardIsChecked.textContent = "Book is read"
@@ -86,12 +89,15 @@ function displayCards() {
             cardIsChecked.classList.add("is-not-read")
         }
         
-        const elements = [cardTitle, cardAuthor, cardPages, cardIsChecked]
+        const elements = [cardTitle, cardAuthor, cardPages, cardIsChecked, removeBookBtn]
         elements.forEach(el => cardDiv.appendChild(el))
         container.appendChild(cardDiv)
     })
 }
 displayCards()
 
+container.addEventListener('click', (e) => {
+    console.log(e.target);
+})
 
 footer.textContent = `Copyright © Rishi Raj ${new Date().getFullYear()}`
