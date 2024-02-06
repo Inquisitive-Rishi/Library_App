@@ -12,6 +12,7 @@ const closeModalBtn = document.querySelector('.close-btn')
 
 addBtn.addEventListener('click', () => {
     modal.showModal()
+    this.focus()
 })
 
 closeModalBtn.addEventListener('click', () => {
