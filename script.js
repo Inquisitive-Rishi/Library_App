@@ -25,6 +25,7 @@ const library = [
     {title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', pages: 344, checked: false},
 ]
 
+
 function Book(title,author,pages,checked) {
     this.title = title;
     this.author = author;
@@ -54,6 +55,32 @@ addBookBtn.addEventListener('click', (e) => {
     modal.close()
 })
 
+function clearLibrary() {
+    while (library.length > 0) {
+        library.pop()
+    }
+}
+
+
+container.addEventListener('click', (e) => {
+    const libraryCopy = [...library]
+    const deleteBtn = e.target
+    const card = deleteBtn.parentNode;
+    const cardTitle = card.firstChild.textContent
+    const cardPages = Number(card.children[2].textContent.split(":")[1].trim())
+    const titleIndex = libraryCopy.findIndex(book => book.title === cardTitle)
+    const pagesIndex = libraryCopy.findIndex(book => book.pages === cardPages)
+    clearLibrary()
+    clearCardContainer()
+    for (let i = 0; i < libraryCopy.length; i++) {
+        if (!(i === titleIndex && i === pagesIndex)) {
+            console.log(i);
+            library.push(libraryCopy[i])
+        }
+    }
+    displayCards()
+})
+
 function clearCardContainer() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -80,6 +107,7 @@ function displayCards() {
         cardAuthor.textContent = "written by: "+ card.author;
         cardPages.textContent = "pages: "+ card.pages;
         removeBookBtn.textContent = 'delete'
+        cardPages.style.marginBottom = 'auto'
         
         if (card.checked) {
             cardIsChecked.textContent = "Book is read"
@@ -96,8 +124,5 @@ function displayCards() {
 }
 displayCards()
 
-container.addEventListener('click', (e) => {
-    console.log(e.target);
-})
 
 footer.textContent = `Copyright © Rishi Raj ${new Date().getFullYear()}`
