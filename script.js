@@ -62,24 +62,26 @@ function clearLibrary() {
     }
 }
 
-
 container.addEventListener('click', (e) => {
     const libraryCopy = [...library]
-    const deleteBtn = e.target
-    const card = deleteBtn.parentNode;
-    const cardTitle = card.firstChild.textContent
-    const cardPages = Number(card.children[2].textContent.split(":")[1].trim())
-    const titleIndex = libraryCopy.findIndex(book => book.title === cardTitle)
-    const pagesIndex = libraryCopy.findIndex(book => book.pages === cardPages)
-    clearLibrary()
-    clearCardContainer()
-    for (let i = 0; i < libraryCopy.length; i++) {
-        if (!(i === titleIndex && i === pagesIndex)) {
-            console.log(i);
-            library.push(libraryCopy[i])
+    let deleteBtn = e.target
+    if (deleteBtn.textContent === 'delete') {
+        const card = deleteBtn.parentNode;
+        const cardTitle = card.firstChild.textContent
+        const cardPages = Number(card.children[2].textContent.split(":")[1].trim())
+        const titleIndex = libraryCopy.findIndex(book => book.title === cardTitle)
+        const pagesIndex = libraryCopy.findIndex(book => book.pages === cardPages)
+        clearLibrary()
+        clearCardContainer()
+        for (let i = 0; i < libraryCopy.length; i++) {
+            if (!(i === titleIndex && i === pagesIndex)) {
+                console.log(i);
+                library.push(libraryCopy[i])
+            }
         }
+        displayCards()
     }
-    displayCards()
+   
 })
 
 function clearCardContainer() {
@@ -95,7 +97,7 @@ function displayCards() {
         const cardTitle = document.createElement('p')
         const cardAuthor = document.createElement('p')
         const cardPages = document.createElement('p')
-        const cardIsChecked = document.createElement('p')
+        const cardIsChecked = document.createElement('button')
         const removeBookBtn = document.createElement('button')
 
         cardDiv.setAttribute('class', 'card')

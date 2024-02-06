@@ -166,11 +166,13 @@ input[type="checkbox"] {
 }
 
 .is-not-read {
+    font-weight: bold;
     background-color: #f53434;
     color: white;
 }
 
 .is-read {
+    font-weight: bold;
     background-color: #4adc4a;
     color: white;
 }
