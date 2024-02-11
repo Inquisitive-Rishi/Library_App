@@ -111,18 +111,42 @@ function displayCards() {
         cardPages.textContent = "pages: "+ card.pages;
         removeBookBtn.textContent = 'delete'
         cardPages.style.marginBottom = 'auto'
+
+        const checkedTxt = "Book is read"
+        const notCheckedTxt = "Book is not read"
         
-        if (card.checked) {
-            cardIsChecked.textContent = "Book is read"
-            cardIsChecked.classList.add("is-read")
-        } else {
-            cardIsChecked.textContent = "Book is not read"
-            cardIsChecked.classList.add("is-not-read")
-        }
-        
+        addStatus()
+
+        cardIsChecked.addEventListener('click', () => {
+            toggleRead()
+        })
+
         const elements = [cardTitle, cardAuthor, cardPages, cardIsChecked, removeBookBtn]
         elements.forEach(el => cardDiv.appendChild(el))
         container.appendChild(cardDiv)
+
+        // toggle read status
+        function toggleRead() {
+            if (cardIsChecked.textContent === checkedTxt) {
+                cardIsChecked.textContent = notCheckedTxt
+                cardIsChecked.classList.remove('is-read')
+                cardIsChecked.classList.add('is-not-read')
+            } else {
+                cardIsChecked.textContent = checkedTxt
+                cardIsChecked.classList.remove('is-not-read')
+                cardIsChecked.classList.add('is-read')
+            }
+        }
+
+        function addStatus() {
+            if (card.checked) {
+                cardIsChecked.textContent = checkedTxt
+                cardIsChecked.classList.add("is-read")
+            } else {
+                cardIsChecked.textContent = notCheckedTxt
+                cardIsChecked.classList.add("is-not-read")
+            }
+        }
     })
 }
 displayCards()
